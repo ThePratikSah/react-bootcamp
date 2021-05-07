@@ -3,9 +3,9 @@ import IndiPersonComp from "./IndiPersonComp";
 
 const App = () => {
   useEffect(async () => {
-    const data = await fetch("https://reqres.in/api/users");
-    const jsonData = await data.json();
-    console.log(jsonData);
+    const response = await fetch("https://reqres.in/api/users");
+    const data = await response.json();
+    console.log(data);
   });
 
   return (
