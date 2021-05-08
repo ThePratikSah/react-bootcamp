@@ -1,20 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import IndiPersonComp from "./IndiPersonComp";
 
 const App = () => {
+  const [apiData, setApiData] = useState([]);
+
   useEffect(async () => {
-    const response = await fetch("https://reqres.in/api/users");
-    const data = await response.json();
-    console.log(data);
+    try {
+      const response = await fetch("https://reqres.in/api/users");
+      const { data } = await response.json();
+      setApiData(data);
+    } catch (error) {
+      console.log("Some error occured");
+    }
   });
 
   return (
     <div>
-      <IndiPersonComp
-        email="pratiksah@hotmail.com"
-        image="https://reqres.in/img/faces/9-image.jpg"
-        name="Pratik"
-      />
+      {apiData.map(({ email, avatar, first_name }) => (
+        <IndiPersonComp email={email} image={avatar} name={first_name} />
+      ))}
     </div>
   );
 };

@@ -1,11 +1,12 @@
 import React from "react";
+import "./../styles/App.css";
 
-function IndiPersonComp(props) {
+function IndiPersonComp({ name, email, image }) {
   return (
     <div>
-      <img src={props.image} />
-      <h1>{props.name}</h1>
-      <p>{props.email}</p>
+      <img src={image} alt={name} />
+      <h1>{name}</h1>
+      <p className="para">{email}</p>
     </div>
   );
 }
